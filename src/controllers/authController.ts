@@ -82,6 +82,7 @@ export const resetPassword = async (req: Request, res: Response) => {
       message: "Um link para redefinir sua senha foi enviado para seu e-mail.",
     });
   } catch (error) {
+    console.error("Erro ao enviar e-mail de recuperação:", error);
     return res.status(500).json({ message: "Erro no servidor" });
   }
 };
@@ -100,6 +101,7 @@ export const updatePassword = async (req: Request, res: Response) => {
     await updateUserPassword(user.email, hashedPassword);
     return res.json({ message: "Senha atualizada com sucesso" });
   } catch (error) {
+    console.error("Erro ao atualizar senha:", error);
     return res.status(500).json({ message: "Erro no servidor" });
   }
 };
